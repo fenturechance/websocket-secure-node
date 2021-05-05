@@ -28,13 +28,14 @@ app.use('/', router);
 const wsProxy = createProxyMiddleware(
   '/someurl',
   {
-      target: 'http://104.199.221.76:8088',
+      target: 'https://104.199.221.76:8089',
       changeOrigin: true,
       ws: true,
       pathRewrite: {
           '^/someurl' : '',
       },
       logLevel: 'debug',
+      secure: false,
       onProxyReq(proxyReq, req, rsp) {
           console.log(proxyReq);
       },
