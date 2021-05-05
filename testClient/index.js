@@ -23,4 +23,27 @@ router.get('/', function (req, res, next) {
 
 app.use('/', router);
 
-https.createServer(credentials, app).listen(port);
+const wsProxy = createProxyMiddleware(
+  '/someurl',
+  {
+      target: 'http://104.199.221.76:8088',
+      changeOrigin: true,
+      ws: true,
+      pathRewrite: {
+          '^/someurl' : '',
+      },
+      logLevel: 'debug',
+      onProxyReq(proxyReq, req, rsp) {
+          console.log(proxyReq);
+      },
+      onProxyReq() {
+        console.log('123')
+      }
+  }
+)
+
+
+app.use(wsProxy)
+
+const server = https.createServer(credentials, app).listen(port);
+server.on('upgrade', wsProxy.upgrade);

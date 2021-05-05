@@ -9,6 +9,6 @@ ws.on('connection', function connection(ws)
 {
   setInterval(() => {
      ws.send('ws Chat room is working!');
-  })
+  }, 2000)
 });
 

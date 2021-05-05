@@ -6,6 +6,29 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script>
+    try {
+          const socket = new WebSocket(`ws://104.199.221.76:8088`); // create new WebSocket
+          socket.onmessage = function (msg) {console.log(msg)};  // listen to socket messages  
+    }catch(e) {
+      console.log(e)
+    }
+    const socket2 = new WebSocket(`wss://fenturechance.online:8089`); // create new WebSocket
+    socket2.onmessage = function (msg) {console.log(msg)};  // listen to socket messages 
+    const socket3 = new WebSocket(`wss://104.199.221.76:8089`); // create new WebSocket
+    socket3.onmessage = function (msg) {console.log(msg)};  // listen to socket messages 
+    try {
+          const socket4 = new WebSocket(`wss://localhost/someurl`); // create new WebSocket
+          socket4.onmessage = function (msg) {console.log(msg)};  // listen to socket messages  
+    }catch(e) {
+       console.log(e)
+    }
+    try {
+          const socket5 = new WebSocket(`ws://localhost/someurl`); // create new WebSocket
+          socket5.onmessage = function (msg) {console.log(msg)};  // listen to socket messages  
+    }catch(e) {
+          console.log(e)
+    }
+  </script>
 </body>
 </html>

@@ -13,7 +13,7 @@ wss.on('connection', function connection(ws)
 {
   setInterval(() => {
      ws.send('Chat room is working!');
-  })
+  }, 2000)
 });
 
 server.listen(8089);
