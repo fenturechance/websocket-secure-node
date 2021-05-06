@@ -1,0 +1,15 @@
+version: "2"
+services:
+  node:
+    build:
+      context: .
+    environment:
+      - DEBUG=app:*
+    volumes:
+      - ./:/usr/src/app
+      - /home/jerry/ssl:/usr/src/app/ssl
+    ports:
+      - "5587:80"
+      - "5589:8089"
+      - "5588:8088"
+    command: bash -c "cd /usr/src/app && sh set-node-server.sh"

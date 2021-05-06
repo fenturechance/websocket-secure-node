@@ -4,10 +4,11 @@ const WebSocket = require('ws');
 const path = require('path')
 const server = new https.createServer({
   //cert: fs.readFileSync(path.join(__dirname, '../ssl/certificate.crt')),
-  cert: fs.readFileSync(path.join(__dirname, '../self-ssl/server.crt')),
+  cert: fs.readFileSync(path.join(__dirname, '../ssl/fullchain.pem')),
   //key: fs.readFileSync(path.join(__dirname, '../ssl/private.key'))
-  key: fs.readFileSync(path.join(__dirname, '../self-ssl/server.key'))
+  key: fs.readFileSync(path.join(__dirname, '../ssl/privkey.pem'))
 });
+
 const wss = new WebSocket.Server({ server });
 var msg;
 

@@ -7,14 +7,11 @@ var fs = require('fs');
 var https = require('https');
 let path = require('path')
 
-var hskey = fs.readFileSync(path.join(__dirname, '../self-ssl/server.key'));
-//var hskey = fs.readFileSync(path.join(__dirname, '../ssl/private.key'));
-var hscert = fs.readFileSync(path.join(__dirname, '../self-ssl/server.crt'));
-//var hscert = fs.readFileSync(path.join(__dirname, '../ssl/certificate.crt'));
-
 var credentials = {
-    key: hskey,
-    cert: hscert
+  //cert: fs.readFileSync(path.join(__dirname, '../ssl/certificate.crt')),
+  cert: fs.readFileSync(path.join(__dirname, '../ssl/fullchain.pem')),
+  //key: fs.readFileSync(path.join(__dirname, '../ssl/private.key'))
+  key: fs.readFileSync(path.join(__dirname, '../ssl/privkey.pem'))
 };
 
 app.use(express.static(__dirname + '/dist'));
@@ -28,7 +25,7 @@ app.use('/', router);
 const wsProxy = createProxyMiddleware(
   '/someurl',
   {
-      target: 'https://104.199.221.76:8089',
+      target: 'https://192.168.86.71:8089',
       changeOrigin: true,
       ws: true,
       pathRewrite: {
